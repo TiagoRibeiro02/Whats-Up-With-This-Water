@@ -79,6 +79,82 @@ class _HomeState extends State<Home> {
         return icon;
   }
 
+void changeColor() {
+  switch (_getCategory(_data[0][8])) {
+    case 1:
+      setState(() {
+        isVeryBad1 = !isVeryBad1;
+      });
+      break;
+    case 2:
+      setState(() {
+        isBad1 = !isBad1;
+      });
+      break;
+    case 3:
+      setState(() {
+        isMid1 = !isMid1;
+      });
+      break;
+    case 4:
+      setState(() {
+        isGood1 = !isGood1;
+      });
+      break;
+    case 5:
+      setState(() {
+        isExcelent1 = !isExcelent1;
+      });
+      break;
+  }
+
+  switch (_getCategory(_data[0][17])) {
+    case 1:
+      setState(() {
+        isVeryBad2 = !isVeryBad2;
+      });
+      break;
+    case 2:
+      setState(() {
+        isBad2 = !isBad2;
+      });
+      break;
+    case 3:
+      setState(() {
+        isMid2 = !isMid2;
+      });
+      break;
+    case 4:
+      setState(() {
+        isGood2 = !isGood2;
+      });
+      break;
+    case 5:
+      setState(() {
+        isExcelent2 = !isExcelent2;
+      });
+      break;
+  }
+
+  // Repita o mesmo padrão para os outros casos...
+
+}
+
+int _getCategory(double value) {
+  if (value <= 25.0) {
+    return 1;
+  } else if (value <= 50.0) {
+    return 2;
+  } else if (value <= 70.0) {
+    return 3;
+  } else if (value <= 90.0) {
+    return 4;
+  } else {
+    return 5;
+  }
+}
+
+
   // void changeColor() {
   //   if (_data[0][8] <= 25.0) {
   //     setState(() {
