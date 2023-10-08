@@ -12,7 +12,6 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-
 class _HomeState extends State<Home> {
   LatLng initialLocation = const LatLng(39.647078, -7.676211);
 
@@ -21,17 +20,22 @@ class _HomeState extends State<Home> {
   void _loadCSV() async {
     final _rawData = await rootBundle.loadString("assets/data.csv");
     List<List<dynamic>> _listData =
-    const CsvToListConverter().convert(_rawData);
+        const CsvToListConverter().convert(_rawData);
     setState(() {
       _data = _listData;
     });
   }
 
-  BitmapDescriptor blueColor = BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue);
-  BitmapDescriptor greenColor = BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen);
-  BitmapDescriptor yellowColor = BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow);
-  BitmapDescriptor orangeColor = BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange);
-  BitmapDescriptor redColor = BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed);
+  BitmapDescriptor blueColor =
+      BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue);
+  BitmapDescriptor greenColor =
+      BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen);
+  BitmapDescriptor yellowColor =
+      BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow);
+  BitmapDescriptor orangeColor =
+      BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange);
+  BitmapDescriptor redColor =
+      BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed);
 
   bool isExcelent1 = false;
   bool isGood1 = false;
@@ -69,218 +73,197 @@ class _HomeState extends State<Home> {
   bool isBad6 = true;
   bool isVeryBad6 = false;
 
-
-
   BitmapDescriptor colorIcon(BitmapDescriptor icon) {
-        setState(() {
-          icon: icon;
-        });
-        
-        return icon;
+    setState(() {
+      icon:
+      icon;
+    });
+
+    return icon;
   }
 
-void changeColor() {
-  switch (_getCategory(_data[0][8])) {
-    case 1:
-      setState(() {
-        isVeryBad1 = !isVeryBad1;
-      });
-      break;
-    case 2:
-      setState(() {
-        isBad1 = !isBad1;
-      });
-      break;
-    case 3:
-      setState(() {
-        isMid1 = !isMid1;
-      });
-      break;
-    case 4:
-      setState(() {
-        isGood1 = !isGood1;
-      });
-      break;
-    case 5:
-      setState(() {
-        isExcelent1 = !isExcelent1;
-      });
-      break;
-  }
-
-  switch (_getCategory(_data[0][17])) {
-    case 1:
-      setState(() {
-        isVeryBad2 = !isVeryBad2;
-      });
-      break;
-    case 2:
-      setState(() {
-        isBad2 = !isBad2;
-      });
-      break;
-    case 3:
-      setState(() {
-        isMid2 = !isMid2;
-      });
-      break;
-    case 4:
-      setState(() {
-        isGood2 = !isGood2;
-      });
-      break;
-    case 5:
-      setState(() {
-        isExcelent2 = !isExcelent2;
-      });
-      break;
-  }
-
-  // Repita o mesmo padrão para os outros casos...
-
-}
-
-int _getCategory(double value) {
-  if (value <= 25.0) {
-    return 1;
-  } else if (value <= 50.0) {
-    return 2;
-  } else if (value <= 70.0) {
-    return 3;
-  } else if (value <= 90.0) {
-    return 4;
-  } else {
-    return 5;
-  }
-}
-
-
+  //needs optimization
   // void changeColor() {
-  //   if (_data[0][8] <= 25.0) {
-  //     setState(() {
-  //       isVeryBad1 = !isVeryBad1;
-  //     });
-  //   } else if (_data[0][8] > 25.0 || _data[0][8] <= 50.0) {
-  //     setState(() {
-  //       isBad1 = !isBad1;
-  //     });
-  //   }else if(_data[0][8] > 50.0 || _data[0][8] <= 70.0) {
-  //     setState(() {
-  //       isMid1 = !isMid1;
-  //     });
-  //   }else if(_data[0][8] > 70.0 || _data[0][8] <= 90.0) {
-  //     setState(() {
-  //       isGood1 = !isGood1;
-  //     });
-  //   }else if(_data[0][8] > 90.0 || _data[0][8] <= 100.0) {
-  //     setState(() {
-  //       isExcelent1 = !isExcelent1;
-  //     });
+  //   switch (_getCategory(_data[0][8])) {
+  //     case 1:
+  //       setState(() {
+  //         isVeryBad1 = !isVeryBad1;
+  //       });
+  //       break;
+  //     case 2:
+  //       setState(() {
+  //         isBad1 = !isBad1;
+  //       });
+  //       break;
+  //     case 3:
+  //       setState(() {
+  //         isMid1 = !isMid1;
+  //       });
+  //       break;
+  //     case 4:
+  //       setState(() {
+  //         isGood1 = !isGood1;
+  //       });
+  //       break;
+  //     case 5:
+  //       setState(() {
+  //         isExcelent1 = !isExcelent1;
+  //       });
+  //       break;
   //   }
-  //   if (_data[0][17] <= 25.0) {
-  //     setState(() {
-  //       isVeryBad2 = !isVeryBad2;
-  //     });
-  //   } else if (_data[0][17] > 25.0 || _data[0][17] <= 50.0) {
-  //     setState(() {
-  //       isBad2 = !isBad2;
-  //     });
-  //   }else if(_data[0][17] > 50.0 || _data[0][17] <= 70.0) {
-  //     setState(() {
-  //       isMid2 = !isMid2;
-  //     });
-  //   }else if(_data[0][17] > 70.0 || _data[0][17] <= 90.0) {
-  //     setState(() {
-  //       isGood2 = !isGood2;
-  //     });
-  //   }else if(_data[0][17] > 90.0 || _data[0][17] <= 100.0) {
-  //     setState(() {
-  //       isExcelent2 = !isExcelent2;
-  //     });
+  //
+  //   switch (_getCategory(_data[0][17])) {
+  //     case 1:
+  //       setState(() {
+  //         isVeryBad2 = !isVeryBad2;
+  //       });
+  //       break;
+  //     case 2:
+  //       setState(() {
+  //         isBad2 = !isBad2;
+  //       });
+  //       break;
+  //     case 3:
+  //       setState(() {
+  //         isMid2 = !isMid2;
+  //       });
+  //       break;
+  //     case 4:
+  //       setState(() {
+  //         isGood2 = !isGood2;
+  //       });
+  //       break;
+  //     case 5:
+  //       setState(() {
+  //         isExcelent2 = !isExcelent2;
+  //       });
+  //       break;
   //   }
-  //   if (_data[0][26] <= 25.0) {
-  //     setState(() {
-  //       isVeryBad3 = !isVeryBad3;
-  //     });
-  //   } else if (_data[0][26] > 25.0 || _data[0][26] <= 50.0) {
-  //     setState(() {
-  //       isBad3 = !isBad3;
-  //     });
-  //   }else if(_data[0][26] > 50.0 || _data[0][26] <= 70.0) {
-  //     setState(() {
-  //       isMid3 = !isMid3;
-  //     });
-  //   }else if(_data[0][26] > 70.0 || _data[0][26] <= 90.0) {
-  //     setState(() {
-  //       isGood3 = !isGood3;
-  //     });
-  //   }else if(_data[0][26] > 90.0 || _data[0][26] <= 100.0) {
-  //     setState(() {
-  //       isExcelent3 = !isExcelent3;
-  //     });
+  //
+  //   switch (_getCategory(_data[0][26])) {
+  //     case 1:
+  //       setState(() {
+  //         isVeryBad3 = !isVeryBad3;
+  //       });
+  //       break;
+  //     case 2:
+  //       setState(() {
+  //         isBad3 = !isBad3;
+  //       });
+  //       break;
+  //     case 3:
+  //       setState(() {
+  //         isMid3 = !isMid3;
+  //       });
+  //       break;
+  //     case 4:
+  //       setState(() {
+  //         isGood3 = !isGood3;
+  //       });
+  //       break;
+  //     case 5:
+  //       setState(() {
+  //         isExcelent3 = !isExcelent3;
+  //       });
+  //       break;
   //   }
-  //   if (_data[0][35] <= 25.0) {
-  //     setState(() {
-  //       isVeryBad4 = !isVeryBad4;
-  //     });
-  //   } else if (_data[0][35] > 25.0 || _data[0][35] <= 50.0) {
-  //     setState(() {
-  //       isBad4 = !isBad4;
-  //     });
-  //   }else if(_data[0][35] > 50.0 || _data[0][35] <= 70.0) {
-  //     setState(() {
-  //       isMid4 = !isMid4;
-  //     });
-  //   }else if(_data[0][35] > 70.0 || _data[0][35] <= 90.0) {
-  //     setState(() {
-  //       isGood4 = !isGood4;
-  //     });
-  //   }else if(_data[0][35] > 90.0 || _data[0][35] <= 100.0) {
-  //     setState(() {
-  //       isExcelent4 = !isExcelent4;
-  //     });
+  //
+  //   switch (_getCategory(_data[0][35])) {
+  //     case 1:
+  //       setState(() {
+  //         isVeryBad4 = !isVeryBad4;
+  //       });
+  //       break;
+  //     case 2:
+  //       setState(() {
+  //         isBad4 = !isBad4;
+  //       });
+  //       break;
+  //     case 3:
+  //       setState(() {
+  //         isMid4 = !isMid4;
+  //       });
+  //       break;
+  //     case 4:
+  //       setState(() {
+  //         isGood4 = !isGood4;
+  //       });
+  //       break;
+  //     case 5:
+  //       setState(() {
+  //         isExcelent4 = !isExcelent4;
+  //       });
+  //       break;
   //   }
-  //   if (_data[0][44] <= 25.0) {
-  //     setState(() {
-  //       isVeryBad5 = !isVeryBad5;
-  //     });
-  //   } else if (_data[0][44] > 25.0 || _data[0][44] <= 50.0) {
-  //     setState(() {
-  //       isBad5 = !isBad5;
-  //     });
-  //   }else if(_data[0][44] > 50.0 || _data[0][44] <= 70.0) {
-  //     setState(() {
-  //       isMid5 = !isMid5;
-  //     });
-  //   }else if(_data[0][44] > 70.0 || _data[0][44] <= 90.0) {
-  //     setState(() {
-  //       isGood5 = !isGood5;
-  //     });
-  //   }else if(_data[0][44] > 90.0 || _data[0][44] <= 100.0) {
-  //     setState(() {
-  //       isExcelent5 = !isExcelent5;
-  //     });
+  //
+  //   switch (_getCategory(_data[0][44])) {
+  //     case 1:
+  //       setState(() {
+  //         isVeryBad5 = !isVeryBad5;
+  //       });
+  //       break;
+  //     case 2:
+  //       setState(() {
+  //         isBad5 = !isBad5;
+  //       });
+  //       break;
+  //     case 3:
+  //       setState(() {
+  //         isMid5 = !isMid5;
+  //       });
+  //       break;
+  //     case 4:
+  //       setState(() {
+  //         isGood5 = !isGood5;
+  //       });
+  //       break;
+  //     case 5:
+  //       setState(() {
+  //         isExcelent5 = !isExcelent5;
+  //       });
+  //       break;
   //   }
-  //   if (_data[0][53] <= 25.0) {
-  //     setState(() {
-  //       isVeryBad6 = !isVeryBad6;
-  //     });
-  //   } else if (_data[0][53] > 25.0 || _data[0][53] <= 50.0) {
-  //     setState(() {
-  //       isBad6 = !isBad6;
-  //     });
-  //   }else if(_data[0][53] > 50.0 || _data[0][53] <= 70.0) {
-  //     setState(() {
-  //       isMid6 = !isMid6;
-  //     });
-  //   }else if(_data[0][53] > 70.0 || _data[0][53] <= 90.0) {
-  //     setState(() {
-  //       isGood6 = !isGood6;
-  //     });
-  //   }else if(_data[0][53] > 90.0 || _data[0][53] <= 100.0) {
-  //     setState(() {
-  //       isExcelent6 = !isExcelent6;
-  //     });
+  //
+  //   switch (_getCategory(_data[0][53])) {
+  //     case 1:
+  //       setState(() {
+  //         isVeryBad6 = !isVeryBad6;
+  //       });
+  //       break;
+  //     case 2:
+  //       setState(() {
+  //         isBad6 = !isBad6;
+  //       });
+  //       break;
+  //     case 3:
+  //       setState(() {
+  //         isMid6 = !isMid6;
+  //       });
+  //       break;
+  //     case 4:
+  //       setState(() {
+  //         isGood6 = !isGood6;
+  //       });
+  //       break;
+  //     case 5:
+  //       setState(() {
+  //         isExcelent6 = !isExcelent6;
+  //       });
+  //       break;
+  //   }
+  // }
+  //
+  // int _getCategory(double value) {
+  //   if (value <= 25.0) {
+  //     return 1;
+  //   } else if (value <= 50.0) {
+  //     return 2;
+  //   } else if (value <= 70.0) {
+  //     return 3;
+  //   } else if (value <= 90.0) {
+  //     return 4;
+  //   } else {
+  //     return 5;
   //   }
   // }
 
@@ -288,27 +271,27 @@ int _getCategory(double value) {
     Item(
         headerValue: 'PH',
         expandedValue:
-        'PH é uma medida que serve para medir grau de acidez o alcalinidade numa escala que varia de 0 a 14.\n\nO 7 é neutro, por tanto sim o grau é menor consideramos-la acida e si é maior alcalina. Tem que ter em conta que valores extremos em ambos lados são nocivos para os organismos',
+            'PH é uma medida que serve para medir grau de acidez o alcalinidade numa escala que varia de 0 a 14.\n\nO 7 é neutro, por tanto sim o grau é menor consideramos-la acida e si é maior alcalina. Tem que ter em conta que valores extremos em ambos lados são nocivos para os organismos',
         id: 0),
     Item(
         headerValue: 'Coliformes Termotolerantes ',
         expandedValue:
-        'Tambem conoci a presença do oxigeno que permite a supervivencia dos animais e disminuçao do material órganico.\n\nUma presença baixa dos niveis indica um aumento das bacterias que degrada a qualidade e resulta em um olor ruim.',
+            'Tambem conoci a presença do oxigeno que permite a supervivencia dos animais e disminuçao do material órganico.\n\nUma presença baixa dos niveis indica um aumento das bacterias que degrada a qualidade e resulta em um olor ruim.',
         id: 1),
     Item(
         headerValue: 'Demanda bioquímica do oxigeno - DBO',
         expandedValue:
-        'DBO é a quantidade de oxigênio consumida por microorganismos presentes, issto ajuda na mediaço do nivel de poluçao das aguas.\n\n Um nivel alto do DBO significa um maior grau de poliçao e portanto também de oxigênio presente',
+            'DBO é a quantidade de oxigênio consumida por microorganismos presentes, issto ajuda na mediaço do nivel de poluçao das aguas.\n\n Um nivel alto do DBO significa um maior grau de poliçao e portanto também de oxigênio presente',
         id: 2),
     Item(
         headerValue: 'Turbidez',
         expandedValue:
-        'Podemos entender a turbidez como a presença de particulas em suspensâo ou coloidais\n\nA mediçao é expressada em NTU e o valor máximo permitido para a agua tratada es 1 NTU, acima do qual pode ser considerada turva',
+            'Podemos entender a turbidez como a presença de particulas em suspensâo ou coloidais\n\nA mediçao é expressada em NTU e o valor máximo permitido para a agua tratada es 1 NTU, acima do qual pode ser considerada turva',
         id: 3),
     Item(
         headerValue: 'Solidos Suspendidos totais - TSS',
         expandedValue:
-        'TSS é a quantidade de material suspenso na água, podem resumir-se como às partículas que permanecem na água\n\nEsta medida ajuda tambén a medir o nivel de turbidez e é importante medirla porque uma alta precença de solidos é nocivo para a biodiversidade',
+            'TSS é a quantidade de material suspenso na água, podem resumir-se como às partículas que permanecem na água\n\nEsta medida ajuda tambén a medir o nivel de turbidez e é importante medirla porque uma alta precença de solidos é nocivo para a biodiversidade',
         id: 4)
   ];
 
@@ -344,8 +327,8 @@ int _getCategory(double value) {
           },
           body: ListTile(
               title: Center(
-                child: Text(item.expandedValue),
-              )),
+            child: Text(item.expandedValue),
+          )),
           isExpanded: item.isExpanded,
         );
       }).toList(),
@@ -371,7 +354,6 @@ int _getCategory(double value) {
       },
     );
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -382,7 +364,9 @@ int _getCategory(double value) {
       floatingActionButton: FloatingActionButton.small(
         backgroundColor: Colors.grey[400],
         elevation: 0,
-        onPressed: (){_showDialog();},
+        onPressed: () {
+          _showDialog();
+        },
         child: Icon(Icons.question_mark),
       ),
       appBar: AppBar(
@@ -390,17 +374,24 @@ int _getCategory(double value) {
         centerTitle: true,
       ),
       body: SafeArea(
-          child: GoogleMap(
-            initialCameraPosition: CameraPosition(
-              target: initialLocation,
-              zoom: 14,
-            ),
-
-            markers: {
-              Marker(
+        child: GoogleMap(
+          initialCameraPosition: CameraPosition(
+            target: initialLocation,
+            zoom: 14,
+          ),
+          markers: {
+            Marker(
                 markerId: const MarkerId("V.V.Rodão"),
                 position: const LatLng(39.647078, -7.676211),
-                icon: colorIcon(isExcelent1? blueColor : isGood1? greenColor : isMid1? yellowColor : isBad1? orangeColor : redColor),
+                icon: colorIcon(isExcelent1
+                    ? blueColor
+                    : isGood1
+                        ? greenColor
+                        : isMid1
+                            ? yellowColor
+                            : isBad1
+                                ? orangeColor
+                                : redColor),
                 onTap: () {
                   showDialog(
                     context: context,
@@ -427,177 +418,205 @@ int _getCategory(double value) {
                       );
                     },
                   );
-                }
-              ),
-
-              Marker(
+                }),
+            Marker(
                 markerId: const MarkerId("Cais do Arneiro"),
                 position: const LatLng(39.610895, -7.712968),
-                icon: colorIcon(isExcelent2? blueColor : isGood2? greenColor : isMid2? yellowColor : isBad2? orangeColor : redColor),
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text("Dados"),
-                          content: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                Text("O2 Dissolvido: ${_data[0][13].toString()}"),
-                                Text("Coliforms: ${_data[0][10].toString()}"),
-                                Text("Ph: ${_data[0][16].toString()}"),
-                              ],
-                            ),
+                icon: colorIcon(isExcelent2
+                    ? blueColor
+                    : isGood2
+                        ? greenColor
+                        : isMid2
+                            ? yellowColor
+                            : isBad2
+                                ? orangeColor
+                                : redColor),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text("Dados"),
+                        content: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Text("O2 Dissolvido: ${_data[0][13].toString()}"),
+                              Text("Coliforms: ${_data[0][10].toString()}"),
+                              Text("Ph: ${_data[0][16].toString()}"),
+                            ],
                           ),
-                          actions: <Widget>[
-                            TextButton(
-                              child: const Text("Fechar"),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  }
-              ),
-
-              Marker(
+                        ),
+                        actions: <Widget>[
+                          TextButton(
+                            child: const Text("Fechar"),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }),
+            Marker(
                 markerId: const MarkerId("Barragem do Fratel"),
                 position: const LatLng(39.543207, -7.799899),
-                icon: colorIcon(isExcelent3? blueColor : isGood3? greenColor : isMid3? yellowColor : isBad3? orangeColor : redColor),
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text("Dados"),
-                          content: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                Text("O2 Dissolvido: ${_data[0][22].toString()}"),
-                                Text("Coliforms: ${_data[0][19].toString()}"),
-                                Text("Ph: ${_data[0][25].toString()}"),
-                              ],
-                            ),
+                icon: colorIcon(isExcelent3
+                    ? blueColor
+                    : isGood3
+                        ? greenColor
+                        : isMid3
+                            ? yellowColor
+                            : isBad3
+                                ? orangeColor
+                                : redColor),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text("Dados"),
+                        content: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Text("O2 Dissolvido: ${_data[0][22].toString()}"),
+                              Text("Coliforms: ${_data[0][19].toString()}"),
+                              Text("Ph: ${_data[0][25].toString()}"),
+                            ],
                           ),
-                          actions: <Widget>[
-                            TextButton(
-                              child: const Text("Fechar"),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  }
-              ),
-
-              Marker(
+                        ),
+                        actions: <Widget>[
+                          TextButton(
+                            child: const Text("Fechar"),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }),
+            Marker(
                 markerId: const MarkerId("Belver"),
                 position: const LatLng(39.479917, -7.997408),
-                icon: colorIcon(isExcelent4? blueColor : isGood4? greenColor : isMid4? yellowColor : isBad4? orangeColor : redColor),
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text("Dados"),
-                          content: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                Text("O2 Dissolvido: ${_data[0][30].toString()}"),
-                                Text("Coliforms: ${_data[0][28].toString()}"),
-                                Text("Ph: ${_data[0][34].toString()}"),
-                              ],
-                            ),
+                icon: colorIcon(isExcelent4
+                    ? blueColor
+                    : isGood4
+                        ? greenColor
+                        : isMid4
+                            ? yellowColor
+                            : isBad4
+                                ? orangeColor
+                                : redColor),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text("Dados"),
+                        content: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Text("O2 Dissolvido: ${_data[0][30].toString()}"),
+                              Text("Coliforms: ${_data[0][28].toString()}"),
+                              Text("Ph: ${_data[0][34].toString()}"),
+                            ],
                           ),
-                          actions: <Widget>[
-                            TextButton(
-                              child: const Text("Fechar"),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  }
-              ),
-
-              Marker(
+                        ),
+                        actions: <Widget>[
+                          TextButton(
+                            child: const Text("Fechar"),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }),
+            Marker(
                 markerId: const MarkerId("Jusante"),
                 position: const LatLng(39.451021, -8.206096),
-                icon: colorIcon(isExcelent5? blueColor : isGood5? greenColor : isMid5? yellowColor : isBad5? orangeColor : redColor),
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text("Dados"),
-                          content: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                Text("O2 Dissolvido: ${_data[0][39].toString()}"),
-                                Text("Coliforms: ${_data[0][37].toString()}"),
-                                Text("Ph: ${_data[0][43].toString()}"),
-                              ],
-                            ),
+                icon: colorIcon(isExcelent5
+                    ? blueColor
+                    : isGood5
+                        ? greenColor
+                        : isMid5
+                            ? yellowColor
+                            : isBad5
+                                ? orangeColor
+                                : redColor),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text("Dados"),
+                        content: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Text("O2 Dissolvido: ${_data[0][39].toString()}"),
+                              Text("Coliforms: ${_data[0][37].toString()}"),
+                              Text("Ph: ${_data[0][43].toString()}"),
+                            ],
                           ),
-                          actions: <Widget>[
-                            TextButton(
-                              child: const Text("Fechar"),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  }
-              ),
-
-              Marker(
+                        ),
+                        actions: <Widget>[
+                          TextButton(
+                            child: const Text("Fechar"),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }),
+            Marker(
                 markerId: const MarkerId("Constancia"),
                 position: const LatLng(39.468369, -8.339157),
-                icon: colorIcon(isExcelent6? blueColor : isGood6? greenColor : isMid6? yellowColor : isBad6? orangeColor : redColor),
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text("Dados"),
-                          content: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                Text("O2 Dissolvido: ${_data[0][48].toString()}"),
-                                Text("Coliforms: ${_data[0][46].toString()}"),
-                                Text("Ph: ${_data[0][52].toString()}"),
-                              ],
-                            ),
+                icon: colorIcon(isExcelent6
+                    ? blueColor
+                    : isGood6
+                        ? greenColor
+                        : isMid6
+                            ? yellowColor
+                            : isBad6
+                                ? orangeColor
+                                : redColor),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text("Dados"),
+                        content: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Text("O2 Dissolvido: ${_data[0][48].toString()}"),
+                              Text("Coliforms: ${_data[0][46].toString()}"),
+                              Text("Ph: ${_data[0][52].toString()}"),
+                            ],
                           ),
-                          actions: <Widget>[
-                            TextButton(
-                              child: const Text("Fechar"),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  }
-              ),
-            },
-          ),
+                        ),
+                        actions: <Widget>[
+                          TextButton(
+                            child: const Text("Fechar"),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }),
+          },
+        ),
       ),
     );
   }
 }
-
