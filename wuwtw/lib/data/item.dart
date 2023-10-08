@@ -3,7 +3,7 @@ class Item {
     required this.expandedValue,
     required this.headerValue,
     required this.id,
-    this.isExpanded = false,
+    this.isExpanded = true,
   });
 
   String expandedValue;

@@ -12,20 +12,6 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class Item {
-  Item({
-    required this.expandedValue,
-    required this.headerValue,
-    required this.id,
-    this.isExpanded = false,
-  });
-
-  String expandedValue;
-  String headerValue;
-  bool isExpanded;
-  int id;
-}
-
 
 class _HomeState extends State<Home> {
   LatLng initialLocation = const LatLng(39.647078, -7.676211);
@@ -268,7 +254,7 @@ class _HomeState extends State<Home> {
             return GestureDetector(
               onTap: () {
                 setState(() {
-                  item.isExpanded = !item.isExpanded;
+                  item.isExpanded = item.isExpanded;
                 });
               },
               child: ListTile(
