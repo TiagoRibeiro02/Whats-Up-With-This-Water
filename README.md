@@ -1,4 +1,4 @@
-# Wats-Up-With-This-Water
+# Whats-Up-With-This-Water
 
 Link for the presentation video: https://drive.google.com/file/d/1t7pb2nGMae7eGPTJnP6c3Mb-9SuGALlU/view?usp=sharing
 
