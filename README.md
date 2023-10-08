@@ -9,3 +9,6 @@ https://snirh.apambiente.pt/index.php?idMain=2&idItem=3
 
 Resources from NASA
 https://www.geoaquawatch.org/water-quality-database-inventory/
+
+
+In the app location wuwtw/android/app/src/main/AndroidManifest.xml change the "YOUR_API_KEY" for your google maps api key.
